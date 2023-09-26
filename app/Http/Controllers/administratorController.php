@@ -19,7 +19,7 @@ class administratorController extends Controller
 
         //data users
         $pengguna = User::paginate(6);
-        $Nama_role = Role::paginate(4);
+
 
         Paginator::useBootstrapFive();
         // Paginator::useBootstrapFour();
@@ -29,9 +29,32 @@ class administratorController extends Controller
             [
                 'user' => $user,
                 'role' => $role,
-                'pengguna' => $pengguna,
+                'pengguna' => $pengguna
+
+            ]
+        );
+    }
+    function rolelist()
+    {
+        $Nama_role = Role::paginate(6);
+
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        Paginator::useBootstrapFive();
+
+        return view(
+            'user/rolelist',
+            [
+                'user' => $user,
+                'role' => $role,
                 'Nama_role' => $Nama_role
             ]
         );
+    }
+    function adduser()
+    {
+        return view('user/userlist');
     }
 }

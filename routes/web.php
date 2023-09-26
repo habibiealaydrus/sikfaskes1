@@ -30,4 +30,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [berandaController::class, 'index']);
     Route::get('/logout', [berandaController::class, 'logout']);
     Route::get('/user', [administratorController::class, 'index']);
+    Route::get('/rolelist', [administratorController::class, 'rolelist']);
 });

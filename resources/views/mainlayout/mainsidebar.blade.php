@@ -40,6 +40,12 @@
                                  </a>
                              </li>
                              <li class="nav-item">
+                                 <a href="/rolelist" class="nav-link">
+                                     <i class="fas fa-id-card-alt"></i>
+                                     <p>Role</p>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
                                  <a href="/laporan" class="nav-link">
                                      <i class="	fas fa-chart-line"></i>
                                      <p>Laporan dashboard</p>
