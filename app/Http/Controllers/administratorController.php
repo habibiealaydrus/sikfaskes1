@@ -6,6 +6,7 @@ use App\Models\Role;
 use app\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class administratorController extends Controller
@@ -17,8 +18,11 @@ class administratorController extends Controller
         $role = Auth::user()->role_id;
 
         //data users
-        $pengguna = User::all();
-        $Nama_role = Role::all();
+        $pengguna = User::paginate(6);
+        $Nama_role = Role::paginate(4);
+
+        Paginator::useBootstrapFive();
+        // Paginator::useBootstrapFour();
 
         return view(
             'user/index',
