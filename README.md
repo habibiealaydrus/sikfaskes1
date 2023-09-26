@@ -10,3 +10,4 @@ Dimulai dari tahun 2013 saat menjadi seorang analyst programer sebuah aplikasi y
 
 ## SCREEN SHOT
 ![alt tag](https://github.com/habibiealaydrus/sikfaskes1/blob/main/public/dist/img/preview%20login.png)
+![alt tag](https://github.com/habibiealaydrus/sikfaskes1/blob/main/public/dist/img/preview%20user%20admin.png)
