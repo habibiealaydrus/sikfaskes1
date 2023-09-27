@@ -21,6 +21,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
+
+
+    public function user_level(): BelongsTo
+    {
+        return $this->belongsTo(Level::class, 'level', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -31,8 +37,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
         'level',
+        'role_id',
     ];
     /**
      * The attributes that should be hidden for serialization.
