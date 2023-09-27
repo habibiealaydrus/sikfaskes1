@@ -97,18 +97,49 @@ class administratorController extends Controller
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
+        $dataUser = user::findOrFail($id);
+        $optionLevel = Level::where('id', '!=', $dataUser->level)->get(['id', 'name_level']);
+        $optionRole = Role::where('id', '!=', $dataUser->role_id)->get(['id', 'name_role']);
 
-        //cek data
-        //dd($id);
-        $dataUser = User::select('*')->where('id', $id)->get();
-        //dd($dataUser->all());
         return view(
             'user/edituser',
             [
                 'user' => $user,
                 'role' => $role,
-                'dataUser' => $dataUser
+                'dataUser' => $dataUser,
+                'optionLevel' => $optionLevel,
+                'optionRole' => $optionRole
             ]
         );
+    }
+    function updateuser(Request $request, $id)
+    {
+        //proses updateuser
+
+
+        $data = user::findOrFail($id);
+        $data->update($request->all());
+        return redirect('/user');
+    }
+    public function confirmdelete($id)
+    {
+
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $data = user::findOrFail($id);
+        return view('/user/confirmdelete', [
+            'data' => $data,
+            'user' => $user,
+            'role' => $role
+        ]);
+    }
+    public function destroy($id)
+    {
+        $deletedData = user::findOrfail($id);
+        $deletedData->delete();
+
+        return redirect('/user');
     }
 }

@@ -4,65 +4,23 @@
 
 @section('content')
     <div class="content-wrapper">
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12" style="padding: 1%;">
-                        <!-- general form elements -->
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">Form Add User Baru</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form action="/adduserbaru" method="POST">
+        <div class="container">
+            <div class="row mt-2 mb-2">
+                <section class="col-md-6">
+                    <div class="card mx-3 my-3 px-3 py-3">
+                        <div class="container ">
+                            <h5>Konfirmasi Penghapusan Data</h5>
+                            <form action="/destroy/{{ $data->id }}" method="POST" class="mt-3 mb-3">
+                                @method('DELETE')
                                 @csrf
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="name">Nama User</label>
-                                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Masukan Nama">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Masukan Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" name="password" class="form-control"
-                                            id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="level">Level</label>
-                                        <select name="level" class="custom-select rounded-0" id="level">
-                                            @foreach ($leveList as $levelItem)
-                                                <option value={{ $levelItem->id }}>{{ $levelItem->name_level }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="role">Role</label>
-                                        <select name="role_id" id="role" class="custom-select rounded-0">
-                                            @foreach ($roleUser as $roleUserList)
-                                                <option value="{{ $roleUserList->id }}">{{ $roleUserList->name_role }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a class="btn btn-warning" href="/user">Batal</a>
-                                </div>
-
+                                <p>Anda ingin yakin menghapus data {{ $data->email }} ?</p>
+                                <button type="submit" class="btn btn-danger ">YA</button>
+                                <a href="/user" type="button" class="btn btn-primary ">CANCEL</a>
                             </form>
                         </div>
-                        <!-- /.card -->
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
     </div>
 @endsection

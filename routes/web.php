@@ -34,4 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/adduser', [administratorController::class, 'adduser']);
     Route::post('/adduserbaru', [administratorController::class, 'userbaru']);
     Route::get('/edituser/{id}', [administratorController::class, 'edituser']);
+    route::put('/simpanedituser/{id}', [administratorController::class, 'updateuser']);
+    Route::get('/confirmdelete/{id}', [administratorController::class, 'confirmdelete']);
+    Route::delete('/destroy/{id}', [administratorController::class, 'destroy']);
 });
