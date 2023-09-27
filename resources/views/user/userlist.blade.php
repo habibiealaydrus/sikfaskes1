@@ -36,8 +36,8 @@
                               <td>{{ $item->email }}</td>
                               <td>
                                   <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                      <span class="badge badge-success">Edit</span>
-                                      <span class="badge badge-danger">Hapus</span>
+                                      <a href="/edituser/{{ $item->id }}" class="badge badge-success">Edit</a>
+                                      <a href="/deleteuser/{{ $item->id }}" class="badge badge-danger">Hapus</a>
                                   </div>
                               </td>
                           </tr>

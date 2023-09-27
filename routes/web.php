@@ -33,4 +33,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/rolelist', [administratorController::class, 'rolelist']);
     Route::get('/adduser', [administratorController::class, 'adduser']);
     Route::post('/adduserbaru', [administratorController::class, 'userbaru']);
+    Route::get('/edituser/{id}', [administratorController::class, 'edituser']);
 });

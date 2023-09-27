@@ -89,9 +89,26 @@ class administratorController extends Controller
             'level' => $request['level'],
             'role_id' => $request['role_id']
         ]);
-
-
-
         return redirect('/user');
+    }
+    function edituser($id)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+
+        //cek data
+        //dd($id);
+        $dataUser = User::select('*')->where('id', $id)->get();
+        //dd($dataUser->all());
+        return view(
+            'user/edituser',
+            [
+                'user' => $user,
+                'role' => $role,
+                'dataUser' => $dataUser
+            ]
+        );
     }
 }
