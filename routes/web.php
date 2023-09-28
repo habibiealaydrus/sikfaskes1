@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\administratorController;
+use App\Http\Controllers\pendaftaranController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +27,13 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    //beranda start
     Route::get('/beranda', [berandaController::class, 'index'])->name('beranda');
     Route::get('/home', [berandaController::class, 'index']);
     Route::get('/logout', [berandaController::class, 'logout']);
+    //beranda end
+
+    //administrator start
     Route::get('/user', [administratorController::class, 'index']);
     Route::get('/rolelist', [administratorController::class, 'rolelist']);
     Route::get('/adduser', [administratorController::class, 'adduser']);
@@ -37,4 +42,11 @@ Route::middleware(['auth'])->group(function () {
     route::put('/simpanedituser/{id}', [administratorController::class, 'updateuser']);
     Route::get('/confirmdelete/{id}', [administratorController::class, 'confirmdelete']);
     Route::delete('/destroy/{id}', [administratorController::class, 'destroy']);
+    //administrator end
+
+    //pendaftaran start
+    Route::get('/pendaftaranberobat', [pendaftaranController::class, 'index']);
+    Route::get('/daftarpasienbaru', [pendaftaranController::class, 'daftarpasienbaru']);
+    Route::post('/simpandatapasienbaru', [pendaftaranController::class, 'simpandatapasienbaru']);
+    //pendafataran end
 });
