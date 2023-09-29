@@ -4,6 +4,28 @@
           <a type="button" class="btn btn-primary btn-lg" href="/daftarpasienbaru">
               Daftar Pasien Baru
           </a>
+          <section class="content">
+              <div class="container-fluid">
+                  <h2 class="text-left display-4">Cari Rekam Medis</h2>
+                  <div class="row">
+                      <div class="col-md-8">
+                          <form action="/carimedrec" method="GET">
+                              <div class="input-group">
+                                  <input type="search" name="cari" class="form-control form-control-lg"
+                                      placeholder="Type your keywords here" value="{{ old('cari') }}">
+                                  <div class="input-group-append">
+                                      <button type="submit" class="btn btn-lg btn-default">
+                                          <i class="fa fa-search"></i>
+                                      </button>
+                                  </div>
+                              </div>
+                              <div style="padding:1%;">
+                                  <a class="btn btn-primary" href="/pendaftaranberobat">RESET</a>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
           <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -28,6 +50,7 @@
                   <thead>
                       <tr>
                           <th>No.</th>
+                          <th>NIK</th>
                           <th>Nama pasien</th>
                           <th>Alamat</th>
                           <th>Gender</th>
@@ -39,6 +62,7 @@
                       @foreach ($dataPasien as $dataPasienItem)
                           <tr>
                               <td>{{ $loop->iteration }}</td>
+                              <td>{{ $dataPasienItem->nik }}
                               <td>{{ $dataPasienItem->nama }}</td>
                               <td>{{ $dataPasienItem->alamat }}</td>
                               <td>{{ $dataPasienItem->gender }}</td>
@@ -59,6 +83,7 @@
       <!-- /.card-body -->
       <div class="paginateuser">
           <span>
+              {{ $dataPasien->links() }}
           </span>
       </div>
       <!-- /.card-footer -->

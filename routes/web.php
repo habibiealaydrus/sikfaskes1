@@ -48,5 +48,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pendaftaranberobat', [pendaftaranController::class, 'index']);
     Route::get('/daftarpasienbaru', [pendaftaranController::class, 'daftarpasienbaru']);
     Route::post('/simpandatapasienbaru', [pendaftaranController::class, 'simpandatapasienbaru']);
+    Route::get('/carimedrec', [pendaftaranController::class, 'carimedrec']);
     //pendafataran end
 });

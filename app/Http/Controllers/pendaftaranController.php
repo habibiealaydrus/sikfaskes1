@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Patient_data;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Validator;
 
 
 class pendaftaranController extends Controller
@@ -19,8 +21,9 @@ class pendaftaranController extends Controller
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
-        $dataPasien = Patient_data::all();
+        $dataPasien = Patient_data::paginate(6)->fragment('patient_datas');
 
+        Paginator::useBootstrapFive();
 
         return view('pendaftaran/index', [
             'user' => $user,
@@ -99,5 +102,23 @@ class pendaftaranController extends Controller
 
         $dataPasien = Patient_data::all();
         return redirect('/pendaftaranberobat');
+    }
+    public function carimedrec(Request $request)
+    {
+        //user dan role
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        // dd($request->all());
+        $cari = $request->cari;
+        $dataPasien = DB::table('patient_datas')->where('nik', 'like', '%' . $cari . '%')->paginate(5);
+
+        Paginator::useBootstrapFive();
+
+        return view('pendaftaran/index', [
+            'user' => $user,
+            'role' => $role,
+            'dataPasien' =>  $dataPasien
+        ]);
     }
 }

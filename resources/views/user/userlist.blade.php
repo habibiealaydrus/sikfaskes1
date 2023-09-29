@@ -4,6 +4,7 @@
           <a type="button" class="btn btn-primary btn-lg" href="/adduser">
               Tambah data
           </a>
+
           <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
