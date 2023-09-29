@@ -46,7 +46,7 @@
       <!-- /.card-header -->
       <div class="card-body p-0">
           <div class="table-responsive">
-              <table class="table m-0">
+              <table class="table m-0 text text-center">
                   <thead>
                       <tr>
                           <th>No.</th>
@@ -61,7 +61,7 @@
                   <tbody>
                       @foreach ($dataPasien as $dataPasienItem)
                           <tr>
-                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ $dataPasien->firstItem() + $loop->index }}</td>
                               <td>{{ $dataPasienItem->nik }}
                               <td>{{ $dataPasienItem->nama }}</td>
                               <td>{{ $dataPasienItem->alamat }}</td>
@@ -69,6 +69,7 @@
                               <td>{{ $dataPasienItem->tanggal }}</td>
                               <td>
                                   <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                      <a href="#" class="badge badge-warning">Daftar</a>
                                       <a href="#" class="badge badge-success">Edit</a>
                                       <a href="#" class="badge badge-danger">Hapus</a>
                                   </div>

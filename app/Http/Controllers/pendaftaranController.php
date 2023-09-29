@@ -21,7 +21,7 @@ class pendaftaranController extends Controller
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
-        $dataPasien = Patient_data::paginate(6)->fragment('patient_datas');
+        $dataPasien = Patient_data::paginate(6);
 
         Paginator::useBootstrapFive();
 
@@ -111,7 +111,7 @@ class pendaftaranController extends Controller
 
         // dd($request->all());
         $cari = $request->cari;
-        $dataPasien = DB::table('patient_datas')->where('nik', 'like', '%' . $cari . '%')->paginate(5);
+        $dataPasien = DB::table('patient_datas')->where('nik', 'like', '%' . $cari . '%')->paginate(6);
 
         Paginator::useBootstrapFive();
 
