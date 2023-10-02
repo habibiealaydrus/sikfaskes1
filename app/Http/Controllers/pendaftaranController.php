@@ -121,4 +121,23 @@ class pendaftaranController extends Controller
             'dataPasien' =>  $dataPasien
         ]);
     }
+    public function editpatientdata(Request $request, $id)
+    {
+        //dd($id);
+        //user dan role
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $datapatientedit = Patient_data::findOrFail($id);
+        //dd($datapatientedit->nama);
+        return view(
+            '/pendaftaran/editdatapasien',
+            [
+                'user' => $user,
+                'role' => $role,
+                'datapatientedit' => $datapatientedit
+
+            ]
+        );
+    }
 }

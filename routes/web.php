@@ -49,5 +49,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/daftarpasienbaru', [pendaftaranController::class, 'daftarpasienbaru']);
     Route::post('/simpandatapasienbaru', [pendaftaranController::class, 'simpandatapasienbaru']);
     Route::get('/carimedrec', [pendaftaranController::class, 'carimedrec']);
+    Route::get('/editpatientdata/{id}', [pendaftaranController::class, 'editpatientdata']);
     //pendafataran end
 });
