@@ -244,7 +244,8 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Edit Data Dasar Pasien</h3>
                                 </div>
-                                <form method="post" action="/simpandatapasienbaru">
+                                <form method="post" action="/updatedatapasien/{{ $datapatientedit->id }}">
+                                    @method ('PUT')
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
@@ -303,7 +304,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Alamat</label>
+                                            <label>Alamat</label>php
                                             <input type="text" name="alamat" class="form-control"
                                                 id="Tempat Lahir" placeholder="Alamat sesuai identitas"
                                                 value="{{ $datapatientedit->alamat }}">
@@ -311,25 +312,31 @@
                                         <div class="form-group">
                                             <label>Agama</label>
                                             <select name="agama" class="form-control" id="agama">
-                                                <option value="1">Islam</option>
-                                                <option value="2">Kristen</option>
-                                                <option value="3">Budha</option>
+                                                @foreach ($optionReligion as $religionOption)
+                                                    <option value={{ $religionOption->id }}>
+                                                        {{ $religionOption->name_religion }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Status Pernikahan</label>
                                             <select name="status_pernikahan" class="form-control" id="status">
-                                                <option value="1">Belum Menikah</option>
-                                                <option value="2">Menikah</option>
-                                                <option value="3">Janda/Duda</option>
+                                                @foreach ($optionMaritalstatus as $optionMarital)
+                                                    <option value="{{ $optionMarital->id }}">
+                                                        {{ $optionMarital->name_maritalstatus }}</option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Pekerjaan</label>
                                             <select name="pekerjaan" class="form-control" id="status">
-                                                <option value="1">Belum Bekerja</option>
-                                                <option value="2">Pegawai</option>
-                                                <option value="3">Wiraswasta</option>
+                                                @foreach ($pekerjaan as $item)
+                                                    <option value="{{ $item->id }}">
+                                                        {{ $item->name_workstatus }}
+                                                    </option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                     </div>

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Maritalstatus;
 use App\Models\Patient_data;
+use App\Models\Religion;
+use App\Models\Workstatus;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 
 
@@ -129,15 +130,28 @@ class pendaftaranController extends Controller
         $role = Auth::user()->role_id;
 
         $datapatientedit = Patient_data::findOrFail($id);
-        //dd($datapatientedit->nama);
+        $optionReligion = Religion::all();
+        $optionMaritalstatus = Maritalstatus::all();
+        $pekerjaan = Workstatus::all();
+        //dd($optionWorkStatus->all());
+
         return view(
             '/pendaftaran/editdatapasien',
             [
                 'user' => $user,
                 'role' => $role,
-                'datapatientedit' => $datapatientedit
+                'datapatientedit' => $datapatientedit,
+                'optionReligion' => $optionReligion,
+                'optionMaritalstatus' => $optionMaritalstatus,
+                'pekerjaan' => $pekerjaan,
 
             ]
         );
+    }
+    public function upatedatapatient(Request $request, $id)
+    {
+        $data = Patient_data::findOrFail($id);
+        $data->update($request->all());
+        return redirect('/pendaftaranberobat');
     }
 }
