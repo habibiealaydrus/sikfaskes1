@@ -11,8 +11,8 @@
         <section class="content">
             <div class="container-fluid">
                 @include('mainlayout/infoboxes')
-                @include('mainlayout/row1')
                 @include('mainlayout/row2')
+                @include('mainlayout/row1')
             </div><!--/. container-fluid -->
         </section>
         <!-- /.content -->

@@ -18,57 +18,18 @@
                 <thead>
                     <tr>
                         <th>Rekam Medis</th>
-                        <th>Nama Pasien</th>
-                        <th>Tujuan</th>
+                        <th>Poli Kunjungan</th>
                         <th>Waktu daftar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9908</a></td>
-                        <td>Maesaroh</td>
-                        <td><span class="badge badge-success">Dokter</span></td>
-                        <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                19.30</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                        <td>Unang</td>
-                        <td><span class="badge badge-warning">Laboratorium</span></td>
-                        <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                20.00</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9903</a></td>
-                        <td>Kris</td>
-                        <td><span class="badge badge-danger">Tindakan</span></td>
-                        <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                21.30</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9903</a></td>
-                        <td>Sempala</td>
-                        <td><span class="badge badge-primary">Apotek</span></td>
-                        <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                21.30</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9908</a></td>
-                        <td>Aurel</td>
-                        <td><span class="badge badge-success">Dokter</span></td>
-                        <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                19.35</div>
-                        </td>
-                    </tr>
+                    @foreach ($dataHariIni as $item)
+                        <tr>
+                            <td>{{ $item->nomor_rekam_medik }}</td>
+                            <td>{{ $item->poli_kunjungan }}</td>
+                            <td>{{ $item->created_at }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

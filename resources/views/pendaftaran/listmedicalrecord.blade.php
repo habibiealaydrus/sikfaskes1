@@ -69,7 +69,8 @@
                               <td>{{ $dataPasienItem->tanggal }}</td>
                               <td>
                                   <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                      <a href="#" class="badge badge-warning">Daftar</a>
+                                      <a href="/daftarkunjungandokter/{{ $dataPasienItem->id }}"
+                                          class="badge badge-warning">Daftar</a>
                                       <a href="/editpatientdata/{{ $dataPasienItem->id }}"
                                           class="badge badge-success">Edit</a>
                                       <a

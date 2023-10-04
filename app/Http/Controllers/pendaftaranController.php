@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Maritalstatus;
+use App\Models\Medicalrecord;
 use App\Models\Patient_data;
 use App\Models\Religion;
 use App\Models\Workstatus;
@@ -178,6 +179,70 @@ class pendaftaranController extends Controller
             Session::flash('massage', 'data dasar pasien berhasil dihapus');
         }
 
+        return redirect('/pendaftaranberobat');
+    }
+
+    public function daftarpolidokter($id)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $idpatient = Patient_data::findOrfail($id);
+
+        return view('/pendaftaran/daftarpolidokter', [
+            'user' => $user,
+            'role' => $role,
+            'idpatient' => $idpatient
+        ]);
+    }
+
+    public function cetakantrianpolidokter($id)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+        $hariIni = date('d-m-Y');
+
+        $datapasien = Patient_data::findOrFail($id);
+
+        $jumlahPasienHariIni = Medicalrecord::where('created_at', '=', $hariIni)->count();
+        $antrian = $jumlahPasienHariIni + 1;
+        $poliTujuan = 'Poli Dokter';
+
+        return view('pendaftaran/antrianpoli', [
+            'user' => $user,
+            'role' => $role,
+            'datapasien' => $datapasien,
+            'tanggaldaftar' => $hariIni,
+            'antrian' => $antrian,
+            'poliTujuan' => $poliTujuan
+        ]);
+    }
+    public function tambahpasienpolidokter(Request $request)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+
+
+        $poli = 'Poli Dokter Umum';
+        $default = 'belum berobat';
+
+        $request = Medicalrecord::create(
+            [
+                'nomor_rekam_medik' => $request['nomor_rekam_medik'],
+                'poli_kunjungan' => $poli
+            ]
+        );
+
+        if ($request) {
+            Session::flash('status', 'success');
+            Session::flash('button', 'success');
+            Session::flash('massage', 'Pasien berhasil didaftarkan ');
+        }
+        //dd($datarekammedis->all());
         return redirect('/pendaftaranberobat');
     }
 }
