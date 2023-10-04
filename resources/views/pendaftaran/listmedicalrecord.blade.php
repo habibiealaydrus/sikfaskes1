@@ -4,6 +4,14 @@
           <a type="button" class="btn btn-primary btn-lg" href="/daftarpasienbaru">
               Daftar Pasien Baru
           </a>
+          <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
           <section class="content">
               <div class="container-fluid">
                   <h2 class="text-left display-4">Cari Rekam Medis</h2>
@@ -26,19 +34,11 @@
                   </div>
               </div>
           </section>
-          <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-              </button>
-          </div>
       </div>
       @if (Session::has('status'))
           <div class="alert alert-{{ Session::get('button') }} alert-dismissible fade show" role="alert">
               <strong>{{ Session::get('massage') }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <button type="button" class="close" style="color: white;" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
           </div>
@@ -72,7 +72,10 @@
                                       <a href="#" class="badge badge-warning">Daftar</a>
                                       <a href="/editpatientdata/{{ $dataPasienItem->id }}"
                                           class="badge badge-success">Edit</a>
-                                      <a href="#" class="badge badge-danger">Hapus</a>
+                                      <a
+                                          href="/confirmdeletepatient/{{ $dataPasienItem->id }}"class="badge badge-danger">
+                                          Hapus
+                                      </a>
                                   </div>
                               </td>
                           </tr>

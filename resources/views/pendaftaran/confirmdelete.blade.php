@@ -235,122 +235,27 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+
         <div class="content-wrapper">
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12" style="padding:1%;">
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">Edit Data Dasar Pasien</h3>
-                                </div>
-                                <form method="post" action="/updatedatapasien/{{ $datapatientedit->id }}">
-                                    @method ('PUT')
+            <div class="container">
+                <div class="row mt-2 mb-2">
+                    <section class="col-md-6">
+                        <div class="card mx-3 my-3 px-3 py-3">
+                            <div class="container ">
+                                <h5>Konfirmasi Penghapusan Data</h5>
+                                <form action="/destroypatientdata/{{ $data->id }}" method="POST"
+                                    class="mt-3 mb-3">
+                                    @method('DELETE')
                                     @csrf
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <input type="hidden" name="nomor_rekam_medis" class="form-control hide"
-                                                id="medicalrecordnumber"
-                                                value="{{ $datapatientedit->nomor_rekam_medis }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>NIK</label>
-                                            <input type="text" name="nik" class="form-control" id="nik"
-                                                placeholder="Nomor Induk Penduduk"
-                                                value="{{ $datapatientedit->nik }}">
-                                            @error('nik')
-                                                <small class="badge badge-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nama</label>
-                                            <input type="text" name="nama" class="form-control"
-                                                id="exampleInputEmail1" placeholder="Nama Lengkap"
-                                                value="{{ $datapatientedit->nama }}">
-                                            @error('nama')
-                                                <small class="badge badge-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tempat Lahir</label>
-                                            <input type="text" name="tempat_lahir" class="form-control"
-                                                id="Tempat Lahir" placeholder="Tempat Lahir"
-                                                value="{{ $datapatientedit->tempat_lahir }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tanggal Lahir</label>
-                                            <input type="date" name="tanggal" class="form-control"
-                                                id="Tempat Lahir" placeholder="Tanggal Lahir"
-                                                value="{{ $datapatientedit->tanggal }}">
-                                            @error('tanggal')
-                                                <small class="badge badge-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Gender</label>
-                                            <select name="gender" class="form-control" id="gender">
-                                                <option value="{{ $datapatientedit->gender }}">
-                                                    @if ($datapatientedit->gender = 'L')
-                                                        Lelaki
-                                                    @else
-                                                        Perempuan
-                                                    @endif
-                                                </option>
-                                                @if ($datapatientedit->gender = 'L')
-                                                    <option value="P">Perempuan</option>
-                                                @else
-                                                    <option value="L">Lelaki</option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Alamat</label>
-                                            <input type="text" name="alamat" class="form-control"
-                                                id="Tempat Lahir" placeholder="Alamat sesuai identitas"
-                                                value="{{ $datapatientedit->alamat }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Agama</label>
-                                            <select name="agama" class="form-control" id="agama">
-                                                @foreach ($optionReligion as $religionOption)
-                                                    <option value={{ $religionOption->id }}>
-                                                        {{ $religionOption->name_religion }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Status Pernikahan</label>
-                                            <select name="status_pernikahan" class="form-control" id="status">
-                                                @foreach ($optionMaritalstatus as $optionMarital)
-                                                    <option value="{{ $optionMarital->id }}">
-                                                        {{ $optionMarital->name_maritalstatus }}</option>
-                                                @endforeach
-
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Pekerjaan</label>
-                                            <select name="pekerjaan" class="form-control" id="status">
-                                                @foreach ($pekerjaan as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->name_workstatus }}
-                                                    </option>
-                                                @endforeach
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="/pendaftaranberobat" class="btn btn-warning">Batal</a>
-                                    </div>
+                                    <p>Anda ingin yakin menghapus data Pasien {{ $data->nama }} ?</p>
+                                    <button type="submit" class="btn btn-danger ">YA</button>
+                                    <a href="/pendaftaranberobat" type="button" class="btn btn-primary ">CANCEL</a>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-            </section>
+            </div>
         </div>
         {{-- footer start --}}
         <!-- Control Sidebar -->

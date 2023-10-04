@@ -51,5 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/carimedrec', [pendaftaranController::class, 'carimedrec']);
     Route::get('/editpatientdata/{id}', [pendaftaranController::class, 'editpatientdata']);
     Route::put('/updatedatapasien/{id}', [pendaftaranController::class, 'upatedatapatient']);
+    Route::get('/confirmdeletepatient/{id}', [pendaftaranController::class, 'confirmdeletepatient']);
+    route::delete('destroypatientdata/{id}', [pendaftaranController::class, 'destroypatientdata']);
     //pendafataran end
 });

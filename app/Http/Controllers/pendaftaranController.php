@@ -154,4 +154,30 @@ class pendaftaranController extends Controller
         $data->update($request->all());
         return redirect('/pendaftaranberobat');
     }
+    public function confirmdeletepatient($id)
+    {
+
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $data = Patient_data::findOrFail($id);
+        return view('/pendaftaran/confirmdelete', [
+            'data' => $data,
+            'user' => $user,
+            'role' => $role
+        ]);
+    }
+    public function destroypatientdata($id)
+    {
+        $deletedData = Patient_data::findOrfail($id);
+        $deletedData->delete();
+        if ($deletedData) {
+            Session::flash('status', 'success');
+            Session::flash('button', 'danger');
+            Session::flash('massage', 'data dasar pasien berhasil dihapus');
+        }
+
+        return redirect('/pendaftaranberobat');
+    }
 }
