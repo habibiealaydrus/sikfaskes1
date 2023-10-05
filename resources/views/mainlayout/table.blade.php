@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>Rekam Medis</th>
-                        <th>Poli Kunjungan</th>
+                        <th>Poli Kunjungan </th>
                         <th>Waktu daftar</th>
                     </tr>
                 </thead>
@@ -37,8 +37,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-        <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Pendaftaran</a>
-        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Lihat Semua</a>
+        {{ $dataHariIni->links() }}
     </div>
     <!-- /.card-footer -->
 </div>

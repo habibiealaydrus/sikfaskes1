@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Medicalrecord;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class berandaController extends Controller
@@ -19,16 +20,17 @@ class berandaController extends Controller
         $startMonth = Carbon::now()->startOfMonth()->format('l, d-m-Y');
         //pendaftaran table
         $today = date('Y-m-d');
-        $dataPendaftaranHariIni = DB::table('medicalrecords')->where('created_at', 'like', '%' . $today . '%')->paginate(6);
+        $dataHariIni = DB::table('medicalrecords')->where('created_at', 'like', '%' . $today . '%')->paginate(6);
 
+        Paginator::useBootstrapFive();
+        ~$totalkunjungan = Medicalrecord::select('poli_kunjungan', DB::raw("COUNT(id) as count"))
+            ->groupBy('poli_kunjungan')
+            ->get();
+        //dd($totalkunjungan);
+        $dataArray = array($totalkunjungan);
         return view(
             'beranda',
-            [
-                'user' => $user,
-                'role' => $role,
-                'startMonth' => $startMonth,
-                'dataHariIni' => $dataPendaftaranHariIni
-            ]
+            compact('user', 'role', 'startMonth', 'dataHariIni', 'totalkunjungan')
         );
     }
 

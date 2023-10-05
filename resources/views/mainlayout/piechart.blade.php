@@ -14,54 +14,39 @@
     <!-- /.card-header -->
     <div class="card-body">
         <div class="row">
-            <div class="col-md-8">
-                <div class="chart-responsive">
-                    <canvas id="pieChart" height="150"></canvas>
-                </div>
-                <!-- ./chart-responsive -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-4">
-                <ul class="chart-legend clearfix">
-                    <li><i class="far fa-circle text-danger"></i> Dokter</li>
-                    <li><i class="far fa-circle text-success"></i> Apotek</li>
-                    <li><i class="far fa-circle text-warning"></i> Lab</li>
-                    <li><i class="far fa-circle text-info"></i> Tindakan</li>
-                </ul>
-            </div>
-            <!-- /.col -->
+            <div id="piechart" style="width: 100%;"></div>
         </div>
         <!-- /.row -->
     </div>
     <!-- /.card-body -->
-    {{-- <div class="card-footer p-0">
-        <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    United States of America
-                    <span class="float-right text-danger">
-                        <i class="fas fa-arrow-down text-sm"></i>
-                        12%</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    India
-                    <span class="float-right text-success">
-                        <i class="fas fa-arrow-up text-sm"></i> 4%
-                    </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    China
-                    <span class="float-right text-warning">
-                        <i class="fas fa-arrow-left text-sm"></i> 0%
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </div> --}}
+
     <!-- /.footer -->
 </div>
 <!-- /.card -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['poli_kunjungan', 'count'],
+            <?php
+            foreach ($totalkunjungan as $key => $value) {
+                echo '[' . "'" . $value->poli_kunjungan . "'" . ',' . $value->count . '],';
+            }
+            ?>
+        ]);
+
+        var options = {
+            title: 'Jumlah Kunjungan Unit'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>

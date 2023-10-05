@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <!-- costume css -->
     <link rel="stylesheet" href="dist/css/costum.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.1/echarts.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+
+
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
