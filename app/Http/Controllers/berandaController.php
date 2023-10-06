@@ -23,14 +23,21 @@ class berandaController extends Controller
         $dataHariIni = DB::table('medicalrecords')->where('created_at', 'like', '%' . $today . '%')->paginate(6);
 
         Paginator::useBootstrapFive();
-        ~$totalkunjungan = Medicalrecord::select('poli_kunjungan', DB::raw("COUNT(id) as count"))
+        $totalkunjungan = Medicalrecord::select('poli_kunjungan', DB::raw("COUNT(id) as count"))
             ->groupBy('poli_kunjungan')
             ->get();
         //dd($totalkunjungan);
         $dataArray = array($totalkunjungan);
+
+
+        $totalkunjunganharian = Medicalrecord::select('created_at', DB::raw("COUNT(id) as count"))
+            ->groupBy('created_at')
+            ->get();
+        //dd($totalkunjunganharian);
+        $dataArray = array($totalkunjungan);
         return view(
             'beranda',
-            compact('user', 'role', 'startMonth', 'dataHariIni', 'totalkunjungan')
+            compact('user', 'role', 'startMonth', 'dataHariIni', 'totalkunjungan', 'totalkunjunganharian')
         );
     }
 

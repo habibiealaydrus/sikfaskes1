@@ -4,23 +4,10 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Statistik Jumlah Pasien</h5>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
                     </button>
-                    {{-- <div class="btn-group">
-                        <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                            <i class="fas fa-wrench"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" role="menu">
-                            <a href="#" class="dropdown-item">Action</a>
-                            <a href="#" class="dropdown-item">Another action</a>
-                            <a href="#" class="dropdown-item">Something else here</a>
-                            <a class="dropdown-divider"></a>
-                            <a href="#" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div> --}}
                     <button type="button" class="btn btn-tool" data-card-widget="remove">
                         <i class="fas fa-times"></i>
                     </button>
@@ -28,64 +15,52 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="text-center">
-                            <strong>{{ $startMonth }} - {{ date('l, d-m-Y') }}</strong>
-                        </p>
-                        <div class="chart">
-                            <!-- Sales Chart Canvas -->
-                            <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-                        </div>
-                        <!-- /.chart-responsive -->
-                    </div>
-                    <!-- /.col -->
-
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
+                <p class="text-center">
+                    <strong>{{ $startMonth }} - {{ date('l, d-m-Y') }}</strong>
+                </p>
             </div>
-            <!-- ./card-body -->
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-sm-3 col-6">
-                        <div class="description-block border-right">
-                            <h5 class="description-header text-warning">1200 Pasien</h5>
-                            <span class="description-text">Pasien Berobat</span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-3 col-6">
-                        <div class="description-block border-right">
-                            <h5 class="description-header text-primary">1500 Resep</h5>
-                            <span class="description-text">Apotek</span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-3 col-6">
-                        <div class="description-block border-right">
-                            <h5 class="description-header text-success">2000 tindakan</h5>
-                            <span class="description-text">Pasien Tindakan</span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-3 col-6">
-                        <div class="description-block">
-                            <h5 class="description-header text-danger">3000 Pemeriksaan</h5>
-                            <span class="description-text">Pemeriksaan Laboratorium</span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-                <!-- /.row -->
+            <div style="padding: 2%">
+                <div id="top_x_div" style="height: 200px;"></div>
             </div>
-            <!-- /.card-footer -->
         </div>
-        <!-- /.card -->
     </div>
-    <!-- /.col -->
 </div>
-<!-- /.row -->
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['bar']
+    });
+    google.charts.setOnLoadCallback(drawStuff);
+
+    function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+            ['Jam ', 'Jumlah Pasien', {
+                role: 'style'
+            }],
+            <?php
+            foreach ($totalkunjunganharian as $key => $value) {
+                echo '[' . "'" . date('d-m-Y', strtotime($value->created_at)) . "'" . ',' . $value->count . ',' . " 'color:gray'" . '],';
+            }
+            ?>
+        ]);
+
+        var options = {
+            'backgroundColor': 'transparent',
+            legend: {
+                position: 'none'
+            },
+            chartArea: {
+                backgroundColor: 'transparent',
+            },
+
+            bar: {
+                groupWidth: "90%"
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+</script>
