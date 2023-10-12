@@ -15,6 +15,11 @@
         <h3>Didaftarkan oleh: {{ $user }}</h3>
         <h4>Tanggal : {{ $tanggaldaftar }}</h4>
         <h4>Poli: {{ $poli }}</h4>
+        <h4>Harga:
+            @foreach ($harga as $harga)
+                Rp.{{ $harga->harga }},-
+            @endforeach
+        </h4>
     </center>
     <script>
         window.print();

@@ -183,16 +183,16 @@ class pendaftaranController extends Controller
         return redirect('/pendaftaranberobat');
     }
 
-    public function daftarpolidokter($id)
+    public function daftarpoli($id)
     {
         //identitas akun
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
         $idpatient = Patient_data::findOrfail($id);
-        $poli = Unit::all();
-
-        return view('/pendaftaran/daftarpolidokter', [
+        $poli = Unit::where('jenis_unit', 'like', 'poli')->get();
+        //dd($poli);
+        return view('/pendaftaran/daftarpoli', [
             'user' => $user,
             'role' => $role,
             'idpatient' => $idpatient,
@@ -200,19 +200,21 @@ class pendaftaranController extends Controller
         ]);
     }
 
-    public function cetakantrianpolidokter($id, $nama_unit)
+    public function cetakantrianpolidokter($id, $poli)
     {
         //identitas akun
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
         $hariIni = date('Y-m-d');
-
-
+        //mengambil nama
         $datapasien = Patient_data::findOrFail($id);
 
+        //mengambil urutan
         $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
-
-        $poli = $nama_unit;
+        //mengambil harga
+        $harga = Unit::where('nama_unit', '=', $poli)->get();
+        //dd($datapasien);
+        //dd($harga);
         //dd($jumlahPasienHariIni);
         $antrian = $jumlahPasienHariIni + 1;
 
@@ -223,7 +225,8 @@ class pendaftaranController extends Controller
             'datapasien' => $datapasien,
             'tanggaldaftar' => $hariIni,
             'antrian' => $antrian,
-            'poli' => $poli
+            'poli' => $poli,
+            'harga' => $harga
         ]);
     }
     public function tambahpasienpoli(Request $request)
