@@ -21,7 +21,7 @@ class berandaController extends Controller
         //pendaftaran table
         $today = date('Y-m-d');
         //untuk table kunjungan pasien
-        $dataHariIni = DB::table('medicalrecords')->where('created_at', 'like', '%' . $today . '%')->paginate(6);
+        $dataHariIni = DB::table('medicalrecords')->where('created_at', 'like', '%' . $today . '%')->orderBy('created_at', 'DESC')->paginate(6);
         Paginator::useBootstrapFive();
         //untuk info grafis pie chart
         $totalkunjungan = Medicalrecord::select('poli_kunjungan', DB::raw("COUNT(id) as count"))

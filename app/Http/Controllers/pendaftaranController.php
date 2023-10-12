@@ -191,7 +191,7 @@ class pendaftaranController extends Controller
 
         $idpatient = Patient_data::findOrfail($id);
         $poli = Unit::where('jenis_unit', 'like', 'poli')->get();
-        //dd($poli);
+        //dd($role);
         return view('/pendaftaran/daftarpoli', [
             'user' => $user,
             'role' => $role,
@@ -200,7 +200,7 @@ class pendaftaranController extends Controller
         ]);
     }
 
-    public function cetakantrianpolidokter($id, $poli)
+    public function cetakantrianpolidokter(Request $request, $id)
     {
         //identitas akun
         $user = Auth::user()->name;
@@ -208,11 +208,11 @@ class pendaftaranController extends Controller
         $hariIni = date('Y-m-d');
         //mengambil nama
         $datapasien = Patient_data::findOrFail($id);
-
+        $poli = $request->poli_kunjungan;
         //mengambil urutan
         $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
         //mengambil harga
-        $harga = Unit::where('nama_unit', '=', $poli)->get();
+        // $harga = Unit::where('nama_unit', '=', $poli_kunjungan)->get();
         //dd($datapasien);
         //dd($harga);
         //dd($jumlahPasienHariIni);
@@ -225,8 +225,8 @@ class pendaftaranController extends Controller
             'datapasien' => $datapasien,
             'tanggaldaftar' => $hariIni,
             'antrian' => $antrian,
-            'poli' => $poli,
-            'harga' => $harga
+            'poli' => $poli
+
         ]);
     }
     public function tambahpasienpoli(Request $request)
@@ -250,5 +250,63 @@ class pendaftaranController extends Controller
         }
         //dd($datarekammedis->all());
         return redirect('/pendaftaranberobat');
+    }
+    public function pendaftaranpenunjang()
+    {
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $dataPasien = Patient_data::paginate(6);
+
+        Paginator::useBootstrapFive();
+        return view(
+            'pendaftaran/listmedicalrecord2',
+            [
+                'user' => $user,
+                'role' => $role,
+                'dataPasien' => $dataPasien
+            ]
+        );
+    }
+    public function tambahpasienpenunjang($id)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $idpatient = Patient_data::findOrfail($id);
+        $unit = Unit::where('jenis_unit', 'like', 'penunjang')->get();
+        //dd($role);
+        return view(
+            'pendaftaran/daftarpenunjang',
+            [
+                'user' => $user,
+                'role' => $role,
+                'idpatient' => $idpatient,
+                'unit' => $unit
+            ]
+        );
+    }
+    public function simpanpasienpenunjang(Request $request)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+
+        $request = Medicalrecord::create(
+            [
+                'nomor_rekam_medik' => $request['nomor_rekam_medik'],
+                'poli_kunjungan' => $request['poli_kunjungan']
+            ]
+        );
+
+        if ($request) {
+            Session::flash('status', 'success');
+            Session::flash('button', 'success');
+            Session::flash('massage', 'Pasien Penunjang berhasil didaftarkan ');
+        }
+        //dd($datarekammedis->all());
+        return redirect('/pendaftaranpenunjang');
     }
 }

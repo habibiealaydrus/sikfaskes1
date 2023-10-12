@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     //administrator end
 
     //pendaftaran start
-    Route::get('/pendaftaranberobat', [pendaftaranController::class, 'index']);
+    Route::get('/pendaftaranpoli', [pendaftaranController::class, 'index']);
     Route::get('/daftarpasienbaru', [pendaftaranController::class, 'daftarpasienbaru']);
     Route::post('/simpandatapasienbaru', [pendaftaranController::class, 'simpandatapasienbaru']);
     Route::get('/carimedrec', [pendaftaranController::class, 'carimedrec']);
@@ -53,8 +53,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/updatedatapasien/{id}', [pendaftaranController::class, 'upatedatapatient']);
     Route::get('/confirmdeletepatient/{id}', [pendaftaranController::class, 'confirmdeletepatient']);
     route::delete('destroypatientdata/{id}', [pendaftaranController::class, 'destroypatientdata']);
-    Route::get('//daftarkunjunganpoli/{id}', [pendaftaranController::class, 'daftarpoli']);
-    Route::get('/cetakantrianpolidokter/{id}/{nama_unit}', [pendaftaranController::class, 'cetakantrianpolidokter']);
+    Route::get('/daftarkunjunganpoli/{id}', [pendaftaranController::class, 'daftarpoli']);
+    Route::get('cetakantriandokter/{id}', [pendaftaranController::class, 'cetakantrianpolidokter']);
     Route::post('/tambahpasienpoli', [pendaftaranController::class, 'tambahpasienpoli']);
+    Route::get('/pendaftaranpenunjang', [pendaftaranController::class, 'pendaftaranpenunjang']);
+    Route::get('/daftarkunjunganpenunjang/{id}', [pendaftaranController::class, 'tambahpasienpenunjang']);
+    Route::post('/tambahpasienpenunjang', [pendaftaranController::class, 'simpanpasienpenunjang']);
     //pendafataran end
 });

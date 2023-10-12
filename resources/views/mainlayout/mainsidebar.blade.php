@@ -30,7 +30,7 @@
                          </p>
                      </a>
                      <ul class="nav nav-treeview">
-                         @if ($role == '1')
+                         @if ($role = 1)
                              <li class="nav-item">
                                  <a href="/user" class="nav-link">
                                      <i class="fas fa-id-card-alt"></i>
@@ -61,15 +61,16 @@
                                  <i class="right fas fa-angle-left"></i>
                              </p>
                          </a>
+
                          <ul class="nav nav-treeview">
                              <li class="nav-item">
-                                 <a href="/pendaftaranberobat" class="nav-link">
+                                 <a href="/pendaftaranpoli" class="nav-link">
                                      <i class="far fa-circle nav-icon"></i>
                                      <p>Pendaftaran Poli</p>
                                  </a>
                              </li>
                              <li class="nav-item">
-                                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                 <a href="/pendaftaranpenunjang" class="nav-link">
                                      <i class="far fa-circle nav-icon"></i>
                                      <p>Pendaftaran Penunjang</p>
                                  </a>
