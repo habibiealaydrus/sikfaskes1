@@ -14,7 +14,7 @@
         <h2>Nama pasien : {{ $datapasien->nama }}</h2>
         <h3>Didaftarkan oleh: {{ $user }}</h3>
         <h4>Tanggal : {{ $tanggaldaftar }}</h4>
-        <h4>Poli: {{ $poliTujuan }}</h4>
+        <h4>Poli: {{ $poli }}</h4>
     </center>
     <script>
         window.print();

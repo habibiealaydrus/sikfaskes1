@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>NIK</label>
-                                        <input type="text" name="nik" class="form-control" id="nik"
+                                        <input type="number" name="nik" class="form-control" id="nik"
                                             placeholder="Nomor Induk Penduduk" value="{{ old('nik') }}">
                                         @error('nik')
                                             <small class="badge badge-danger">{{ $message }}</small>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label>Nama</label>
                                         <input type="text" name="nama" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Nama Lengkap" value="{{ old('name') }}">
+                                            placeholder="Nama Lengkap" value="{{ old('nama') }}">
                                         @error('nama')
                                             <small class="badge badge-danger">{{ $message }}</small>
                                         @enderror
@@ -68,7 +68,7 @@
                                     <div class="form-group">
                                         <label>Alamat</label>
                                         <input type="text" name="alamat" class="form-control" id="Tempat Lahir"
-                                            placeholder="Alamat sesuai identitas" value="{{ old('alamatgit add') }}">
+                                            placeholder="Alamat sesuai identitas" value="{{ old('alamat') }}">
                                     </div>
                                     <div class="form-group">
                                         <label>Agama</label>

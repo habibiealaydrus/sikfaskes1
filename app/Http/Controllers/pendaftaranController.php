@@ -6,6 +6,7 @@ use App\Models\Maritalstatus;
 use App\Models\Medicalrecord;
 use App\Models\Patient_data;
 use App\Models\Religion;
+use App\Models\Unit;
 use App\Models\Workstatus;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -189,26 +190,32 @@ class pendaftaranController extends Controller
         $role = Auth::user()->role_id;
 
         $idpatient = Patient_data::findOrfail($id);
+        $poli = Unit::all();
 
         return view('/pendaftaran/daftarpolidokter', [
             'user' => $user,
             'role' => $role,
-            'idpatient' => $idpatient
+            'idpatient' => $idpatient,
+            'poli' => $poli
         ]);
     }
 
-    public function cetakantrianpolidokter($id)
+    public function cetakantrianpolidokter($id, $nama_unit)
     {
         //identitas akun
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
-        $hariIni = date('d-m-Y');
+        $hariIni = date('Y-m-d');
+
 
         $datapasien = Patient_data::findOrFail($id);
 
-        $jumlahPasienHariIni = Medicalrecord::where('created_at', '=', $hariIni)->count();
+        $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
+
+        $poli = $nama_unit;
+        //dd($jumlahPasienHariIni);
         $antrian = $jumlahPasienHariIni + 1;
-        $poliTujuan = 'Poli Dokter';
+
 
         return view('pendaftaran/antrianpoli', [
             'user' => $user,
@@ -216,24 +223,20 @@ class pendaftaranController extends Controller
             'datapasien' => $datapasien,
             'tanggaldaftar' => $hariIni,
             'antrian' => $antrian,
-            'poliTujuan' => $poliTujuan
+            'poli' => $poli
         ]);
     }
-    public function tambahpasienpolidokter(Request $request)
+    public function tambahpasienpoli(Request $request)
     {
         //identitas akun
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
 
-
-        $poli = 'Poli Dokter Umum';
-        $default = 'belum berobat';
-
         $request = Medicalrecord::create(
             [
                 'nomor_rekam_medik' => $request['nomor_rekam_medik'],
-                'poli_kunjungan' => $poli
+                'poli_kunjungan' => $request['poli_kunjungan']
             ]
         );
 

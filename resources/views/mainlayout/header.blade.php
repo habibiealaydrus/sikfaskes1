@@ -4,19 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIK Faskes I-@yield('judul') </title>
+    <title>@yield('judul') </title>
     <link rel="icon" type="image/x-icon" href="dist/img/favicon/favicon.ico">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <!-- costume css -->
-    <link rel="stylesheet" href="dist/css/costum.css">
+    <link rel="stylesheet" href="{{ asset('dist/css/costum.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.1/echarts.min.js" crossorigin="anonymous"
@@ -65,13 +65,13 @@
 
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->
-    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="plugins/raphael/raphael.min.js"></script>
-    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <script src="{{ asset('plugins / jquery - mousewheel / jquery . mousewheel . js') }}"></script>
+    <script src="{{ asset('plugins/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
-    <script src="dist/js/pages/dashboard2.js"></script>
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
 </body>
 
 </html>

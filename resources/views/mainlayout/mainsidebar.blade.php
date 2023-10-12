@@ -11,21 +11,19 @@
      <div class="sidebar">
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
              <div class="info">
-                 <strong>Selamat Datang,</strong>
-                 <p>{{ $user }}</p>
+                 <a href="#" class="d-block">Role : {{ $user }}</a>
+                 <a href="/" class="d-block"> <i class='fas fa-home'></i> Beranda</a>
              </div>
-             {{-- <div class="info">
-                 <a href="#" class="d-block"></a>
-             </div> --}}
          </div>
          <!-- Sidebar Menu -->
          <nav class="mt-2">
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                 data-accordion="false">
+                 data-accordion="false" href="/home">
                  <li class="nav-item">
-                     <a href="/home" class="nav-link">
-                         <i class="nav-icon fas fa-tachometer-alt"></i>
+                     <a class="nav-link">
+                         <i href="/home" class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
                              Dashboard
                              <i class="right fas fa-angle-left"></i>

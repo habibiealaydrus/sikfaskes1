@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/confirmdeletepatient/{id}', [pendaftaranController::class, 'confirmdeletepatient']);
     route::delete('destroypatientdata/{id}', [pendaftaranController::class, 'destroypatientdata']);
     Route::get('/daftarkunjungandokter/{id}', [pendaftaranController::class, 'daftarpolidokter']);
-    Route::get('/cetakantrianpolidokter/{id}', [pendaftaranController::class, 'cetakantrianpolidokter']);
-    Route::post('/tambahpasienpolidokter', [pendaftaranController::class, 'tambahpasienpolidokter']);
+    Route::get('/cetakantrianpolidokter/{id}/{nama_unit}', [pendaftaranController::class, 'cetakantrianpolidokter']);
+    Route::post('/tambahpasienpoli', [pendaftaranController::class, 'tambahpasienpoli']);
     //pendafataran end
 });

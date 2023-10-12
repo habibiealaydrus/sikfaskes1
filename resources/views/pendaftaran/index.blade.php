@@ -1,15 +1,13 @@
 @extends('mainlayout/header')
 
-@section('judul', 'Pendafataran')
+@section('judul', 'List Medical Record')
 
 @section('content')
     <div class="content-wrapper">
         <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        @include('pendaftaran/listmedicalrecord')
-                    </div>
+            <div class="col-md-12">
+                <div class="card">
+                    @include('pendaftaran/listmedicalrecord')
                 </div>
             </div>
         </section>

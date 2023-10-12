@@ -16,7 +16,7 @@
               <div class="container-fluid">
                   <h2 class="text-left display-4">Cari Rekam Medis</h2>
                   <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
                           <form action="/carimedrec" method="GET">
                               <div class="input-group">
                                   <input type="search" name="cari" class="form-control form-control-lg"

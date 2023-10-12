@@ -6,7 +6,7 @@
             <div class="info-box-content">
                 <span class="info-box-text">Total Pasien Hari Ini</span>
                 <span class="info-box-number">
-                    10
+                    {{ $dataPasienHariIni }}
                 </span>
             </div>
             <!-- /.info-box-content -->
