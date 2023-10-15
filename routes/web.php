@@ -54,10 +54,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/confirmdeletepatient/{id}', [pendaftaranController::class, 'confirmdeletepatient']);
     route::delete('destroypatientdata/{id}', [pendaftaranController::class, 'destroypatientdata']);
     Route::get('/daftarkunjunganpoli/{id}', [pendaftaranController::class, 'daftarpoli']);
-    Route::get('cetakantriandokter/{id}', [pendaftaranController::class, 'cetakantrianpolidokter']);
+    Route::post('/cetakantrianpoli', [pendaftaranController::class, 'cetakantrianpoli']);
     Route::post('/tambahpasienpoli', [pendaftaranController::class, 'tambahpasienpoli']);
     Route::get('/pendaftaranpenunjang', [pendaftaranController::class, 'pendaftaranpenunjang']);
     Route::get('/daftarkunjunganpenunjang/{id}', [pendaftaranController::class, 'tambahpasienpenunjang']);
+    Route::post('/cetakantrianpenunjang', [pendaftaranController::class, 'cetakantrianpenunjang']);
     Route::post('/tambahpasienpenunjang', [pendaftaranController::class, 'simpanpasienpenunjang']);
     //pendafataran end
 });

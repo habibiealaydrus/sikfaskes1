@@ -9,12 +9,12 @@
                 <div class="card" style="padding:1%;">
                     <div class="container ">
                         <h5>Konfirmasi Pendaftaran Poli/Unit</h5>
-                        <form action="/cetakantrianpolidokter" method="post">
+                        <form action="/cetakantrianpenunjang" method="post">
                             @csrf
                             <div class="form-group">
                                 <label>Nomor Medical Record </label>
-                                <input type="text" name="nomor_rekam_medik" class="form-control hide" id="nik"
-                                    value="{{ $idpatient->nomor_rekam_medis }}">
+                                <input type="text" name="nomor_rekam_medik" class="form-control hide"
+                                    id="nomor_rekam_medik" value="{{ $idpatient->nomor_rekam_medis }}">
                             </div>
                             <div class="form-group">
                                 <label>NIK</label>
@@ -41,20 +41,17 @@
                             </div>
 
                             <p>Apakah pasien tersebut ingin didaftarkan?</p>
-                            <button type="submit" class="btn btn-primary">Daftarkan
+                            <button type="submit" class="btn btn-primary">Cetak & Daftarkan
                             </button>
+                            <a href="/pendaftaranpenunjang" type="button" class="btn btn-warning ">
+                                BATAL
+                            </a>
                         </form>
-                        <a onclick="window.open('/cetakantriandokter/{{ $idpatient->id }}', 'newwindow', 'width=500, height=600'); return false;"
-                            type="button" class="btn btn-success">
-                            Cetak Antrian
-                        </a>
-                        <a href="/pendaftaranpenunjang" type="button" class="btn btn-warning ">
-                            BATAL
-                        </a>
 
                     </div>
                 </div>
             </div>
         </section>
     </div>
+
 @endsection

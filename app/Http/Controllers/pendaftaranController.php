@@ -200,33 +200,34 @@ class pendaftaranController extends Controller
         ]);
     }
 
-    public function cetakantrianpolidokter(Request $request, $id)
+    public function cetakantrianpoli(Request $request)
     {
         //identitas akun
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
         $hariIni = date('Y-m-d');
+        //dd($request->all());
         //mengambil nama
-        $datapasien = Patient_data::findOrFail($id);
-        $poli = $request->poli_kunjungan;
+        $nama = $request['nama'];
+        $poli = $request['pilihan_kunjungan'];
+        // dd($poli);
         //mengambil urutan
         $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
-        //mengambil harga
-        // $harga = Unit::where('nama_unit', '=', $poli_kunjungan)->get();
-        //dd($datapasien);
-        //dd($harga);
-        //dd($jumlahPasienHariIni);
         $antrian = $jumlahPasienHariIni + 1;
+        //mengambil harga
+        //$harga = Unit::where('nama_unit', '=', $poli);
+        //dd($harga->all());
+        //dd($jumlahPasienHariIni);
 
 
         return view('pendaftaran/antrianpoli', [
             'user' => $user,
             'role' => $role,
-            'datapasien' => $datapasien,
+            'nama' => $request['nama'],
             'tanggaldaftar' => $hariIni,
             'antrian' => $antrian,
-            'poli' => $poli
-
+            'poli' => $request['poli_kunjungan'],
+            'nomor_rekam_medik' => $request['nomor_rekam_medik']
         ]);
     }
     public function tambahpasienpoli(Request $request)
@@ -249,7 +250,7 @@ class pendaftaranController extends Controller
             Session::flash('massage', 'Pasien berhasil didaftarkan ');
         }
         //dd($datarekammedis->all());
-        return redirect('/pendaftaranberobat');
+        return redirect('/pendaftaranpoli');
     }
     public function pendaftaranpenunjang()
     {
@@ -287,13 +288,43 @@ class pendaftaranController extends Controller
             ]
         );
     }
+    public function cetakantrianpenunjang(Request $request)
+    {
+        //identitas akun
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+        $hariIni = date('Y-m-d');
+        //dd($request->all());
+        //mengambil nama
+        $nama = $request['nama'];
+        $poli = $request['pilihan_kunjungan'];
+        // dd($poli);
+        //mengambil urutan
+        $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
+        $antrian = $jumlahPasienHariIni + 1;
+        //mengambil harga
+        //$harga = Unit::where('nama_unit', '=', $poli);
+        //dd($harga->all());
+        //dd($jumlahPasienHariIni);
+
+
+        return view('pendaftaran/antrianpenunjang', [
+            'user' => $user,
+            'role' => $role,
+            'nama' => $request['nama'],
+            'tanggaldaftar' => $hariIni,
+            'antrian' => $antrian,
+            'poli' => $request['poli_kunjungan'],
+            'nomor_rekam_medik' => $request['nomor_rekam_medik']
+        ]);
+    }
     public function simpanpasienpenunjang(Request $request)
     {
         //identitas akun
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
-
+        //dd($request->all());
         $request = Medicalrecord::create(
             [
                 'nomor_rekam_medik' => $request['nomor_rekam_medik'],

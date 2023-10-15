@@ -9,7 +9,7 @@
                 <div class="card" style="padding:1%;">
                     <div class="container ">
                         <h5>Konfirmasi Pendaftaran Poli/Unit</h5>
-                        <form action="/tambahpasienpoli" method="post">
+                        <form action="/cetakantrianpoli" method="post">
                             @csrf
                             <div class="form-group">
                                 <label>Nomor Medical Record </label>
@@ -43,11 +43,6 @@
                             <p>Apakah pasien tersebut ingin didaftarkan?</p>
                             <button type="submit" class="btn btn-primary">Daftarkan
                             </button>
-                            <a href="/cetakantrianpolidokter/{{ $idpatient->id }}/{{ $poli->id }}"
-                                onclick="window.open('/cetakantrianpolidokter/{{ $idpatient->id }}/{{ $poli->nama_unit }}', 'newwindow', 'width=500, height=600'); return false;"
-                                type="button" class="btn btn-success">
-                                Cetak Antrian
-                            </a>
                             <a href="/pendaftaranberobat" type="button" class="btn btn-warning ">
                                 BATAL
                             </a>

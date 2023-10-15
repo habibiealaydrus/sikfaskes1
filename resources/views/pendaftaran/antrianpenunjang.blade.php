@@ -20,7 +20,7 @@
             <h4>Tanggal : {{ $tanggaldaftar }}</h4>
             <h3>Poli: {{ $poli }}</h3>
         </div>
-        <form action="/tambahpasienpoli" method="post">
+        <form action="/tambahpasienpenunjang" method="post">
             @csrf
             <div class="input">
                 <input type="text" name="nomor_rekam_medik" class="invisible" id="nomor_rekam_medik"
