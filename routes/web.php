@@ -60,5 +60,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/daftarkunjunganpenunjang/{id}', [pendaftaranController::class, 'tambahpasienpenunjang']);
     Route::post('/cetakantrianpenunjang', [pendaftaranController::class, 'cetakantrianpenunjang']);
     Route::post('/tambahpasienpenunjang', [pendaftaranController::class, 'simpanpasienpenunjang']);
+    Route::get('/kasir', [pendaftaranController::class, 'kasir']);
     //pendafataran end
 });

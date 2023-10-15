@@ -340,4 +340,28 @@ class pendaftaranController extends Controller
         //dd($datarekammedis->all());
         return redirect('/pendaftaranpenunjang');
     }
+
+    public function kasir()
+    {
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        //data transaksi poli dokter
+        // $datatransaksipolidokter = Medicalrecord::where('poli_kunjungan', 'like', 'Poli Dokter Umum')->get();
+        $datatransaksipolidokter = Medicalrecord::where('poli_kunjungan', 'Poli Dokter Umum')->paginate(6);
+        $hargapolidokterumum = Unit::find('1');
+        //dd($hargapolidokterumum);
+        Paginator::useBootstrapFive();
+
+
+        return view(
+            'pendaftaran/kasir',
+            [
+                'user' => $user,
+                'role' => $role,
+                'hargapolidokterumum' => $hargapolidokterumum,
+                'datatransaksipolidokter' => $datatransaksipolidokter
+            ]
+        );
+    }
 }
