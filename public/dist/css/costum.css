@@ -7,6 +7,7 @@
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
+  
 }
 
 @-webkit-keyframes spin {

@@ -30,7 +30,7 @@
                          </p>
                      </a>
                      <ul class="nav nav-treeview">
-                         @if ($role = 1)
+                         @if ($role == '1')
                              <li class="nav-item">
                                  <a href="/user" class="nav-link">
                                      <i class="fas fa-id-card-alt"></i>
@@ -52,7 +52,7 @@
                          @endif
                      </ul>
                  </li>
-                 @if ($role == 2 || $role == 1)
+                 @if ($role == '2')
                      <li class="nav-item">
                          <a href="#" class="nav-link">
                              <i class="nav-icon fas fa-paste"></i>
@@ -85,9 +85,9 @@
                          </ul>
                      </li>
                  @endif
-                 @if ($role == 3 || $role == 1)
+                 @if ($role == '3')
                      <li class="nav-item">
-                         <a href="#" class="nav-link">
+                         <a href="/perawat/index" class="nav-link">
                              <i class="nav-icon fas fa-medkit"></i>
                              <p>
                                  Perawat
@@ -96,7 +96,7 @@
                          </a>
                          <ul class="nav nav-treeview">
                              <li class="nav-item">
-                                 <a href="pages/layout/top-nav.html" class="nav-link">
+                                 <a href="/perawat" class="nav-link">
                                      <i class="far fa-circle nav-icon"></i>
                                      <p>Pemeriksaan Pasien</p>
                                  </a>
@@ -110,7 +110,7 @@
                          </ul>
                      </li>
                  @endif
-                 @if ($role == 4 || $role == 1)
+                 @if ($role == 4)
                      <li class="nav-item">
                          <a href="#" class="nav-link">
                              <i class="nav-icon fas fa-user-md"></i>
@@ -135,7 +135,7 @@
                          </ul>
                      </li>
                  @endif
-                 @if ($role == 5 || $role == 1)
+                 @if ($role == 5)
                      <li class="nav-item">
                          <a href="#" class="nav-link">
                              <i class="nav-icon fas fa-pills"></i>
@@ -166,7 +166,7 @@
                          </ul>
                      </li>
                  @endif
-                 @if ($role == 6 or $role == 1)
+                 @if ($role == 6)
                      <li class="nav-item">
                          <a href="#" class="nav-link">
                              <i class="fas fa-microscope"></i>

@@ -6,6 +6,8 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\administratorController;
 use App\Http\Controllers\pendaftaranController;
+use App\Http\Controllers\perawatController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,4 +64,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambahpasienpenunjang', [pendaftaranController::class, 'simpanpasienpenunjang']);
     Route::get('/kasir', [pendaftaranController::class, 'kasir']);
     //pendafataran end
+    Route::get('/perawat', [perawatController::class, 'index']);
+    Route::get('/perawatperiksa/{nomor_rekam_medik}', [perawatController::class, 'periksaawal']);
+    //perawat
+
+    //perawat end
 });
