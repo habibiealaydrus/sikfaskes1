@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Poli/Unit</label>
-                                <select name="poli_kunjungan" id="poli_kunjungan" class="form-control hide">
+                                <select name="poli_kunjungan" class="form-control hide">
                                     @foreach ($unit as $unit)
                                         <option value="{{ $unit->nama_unit }}">{{ $unit->nama_unit }}</option>
                                     @endforeach

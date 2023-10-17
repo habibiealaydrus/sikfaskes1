@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 
+
 class pendaftaranController extends Controller
 {
 
@@ -206,18 +207,18 @@ class pendaftaranController extends Controller
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
         $hariIni = date('Y-m-d');
-        //dd($request->all());
-        //mengambil nama
-        $nama = $request['nama'];
-        $poli = $request['pilihan_kunjungan'];
-        // dd($poli);
         //mengambil urutan
-        $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
-        $antrian = $jumlahPasienHariIni + 1;
-        //mengambil harga
-        //$harga = Unit::where('nama_unit', '=', $poli);
-        //dd($harga->all());
+        $poli = $request['pilihan_kunjungan'];
+        $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')
+            ->where('poli_kunjungan', 'like', '%' . $poli . '%')->count();
         //dd($jumlahPasienHariIni);
+        $antrian = $jumlahPasienHariIni + 1;
+        $pilihanpoli = $request['poli_kunjungan'];
+        //dd($pilihanpoli);
+        //mengambil harga
+        $harga = DB::table('units')->where('nama_unit', $pilihanpoli)->first();
+        //dd($harga->harga);
+
 
 
         return view('pendaftaran/antrianpoli', [
@@ -227,7 +228,8 @@ class pendaftaranController extends Controller
             'tanggaldaftar' => $hariIni,
             'antrian' => $antrian,
             'poli' => $request['poli_kunjungan'],
-            'nomor_rekam_medik' => $request['nomor_rekam_medik']
+            'nomor_rekam_medik' => $request['nomor_rekam_medik'],
+            'harga' => $harga
         ]);
     }
     public function tambahpasienpoli(Request $request)
@@ -296,16 +298,16 @@ class pendaftaranController extends Controller
         $hariIni = date('Y-m-d');
         //dd($request->all());
         //mengambil nama
-        $nama = $request['nama'];
-        $poli = $request['pilihan_kunjungan'];
-        // dd($poli);
+        $poli = $request['poli_kunjungan'];
+        //dd($poli);
         //mengambil urutan
-        $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->count();
+        $jumlahPasienHariIni = Medicalrecord::where('created_at', 'like', '%' . $hariIni . '%')->where('poli_kunjungan', 'like', '%' . $poli . '%')->count();
         $antrian = $jumlahPasienHariIni + 1;
+        $pilihanpoli = $request['poli_kunjungan'];
+        //dd($pilihanpoli);
         //mengambil harga
-        //$harga = Unit::where('nama_unit', '=', $poli);
-        //dd($harga->all());
-        //dd($jumlahPasienHariIni);
+        $harga = DB::table('units')->where('nama_unit', $pilihanpoli)->first();
+        //dd($harga->harga);
 
 
         return view('pendaftaran/antrianpenunjang', [
@@ -315,7 +317,8 @@ class pendaftaranController extends Controller
             'tanggaldaftar' => $hariIni,
             'antrian' => $antrian,
             'poli' => $request['poli_kunjungan'],
-            'nomor_rekam_medik' => $request['nomor_rekam_medik']
+            'nomor_rekam_medik' => $request['nomor_rekam_medik'],
+            'harga' => $harga
         ]);
     }
     public function simpanpasienpenunjang(Request $request)

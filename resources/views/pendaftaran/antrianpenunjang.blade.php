@@ -19,6 +19,7 @@
             <h3>Didaftarkan oleh: {{ $user }}</h3>
             <h4>Tanggal : {{ $tanggaldaftar }}</h4>
             <h3>Poli: {{ $poli }}</h3>
+            <h3>Harga : Rp.{{ $harga->harga }},-</h3>
         </div>
         <form action="/tambahpasienpenunjang" method="post">
             @csrf
