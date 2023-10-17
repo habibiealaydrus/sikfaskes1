@@ -65,7 +65,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/kasir', [pendaftaranController::class, 'kasir']);
     //pendafataran end
     Route::get('/perawat', [perawatController::class, 'index']);
-    Route::get('/perawatperiksa/{nomor_rekam_medik}', [perawatController::class, 'periksaawal']);
+    Route::get('/perawatperiksa/{id}', [perawatController::class, 'periksaawal']);
+    Route::put('/simpanpemeriksaanperawat/{id}', [perawatController::class, 'updatepemeriksaanfisik']);
     //perawat
 
     //perawat end

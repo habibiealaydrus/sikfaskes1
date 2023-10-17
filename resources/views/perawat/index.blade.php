@@ -45,9 +45,15 @@
                                             </td>
                                             <td>
                                                 <div class="flex-container">
-                                                    <a href="/perawatperiksa/{{ $antriandokter->nomor_rekam_medik }}"
-                                                        class="badge bg-danger" style="margin-right: 5%;">Periksa</a>
-                                                    <span class="badge bg-warning">Belum Periksa</span>
+
+                                                    @if ($antriandokter->pemeriksaan_fisik)
+                                                        <span class="badge bg-success">Telah Diperiksa</span>
+                                                    @else
+                                                        <a href="/perawatperiksa/{{ $antriandokter->id }}"
+                                                            class="badge bg-danger" style="margin-right: 5%;">Periksa</a>
+                                                        <span class="badge bg-warning">Belum Periksa</span>
+                                                    @endif
+
                                                 </div>
                                             </td>
                                         </tr>

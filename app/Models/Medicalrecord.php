@@ -19,6 +19,11 @@ class Medicalrecord extends Model
 
     protected $fillable = [
         'nomor_rekam_medik',
-        'poli_kunjungan'
+        'poli_kunjungan',
+        'anamnase',
+        'pemeriksaan_fisik',
+        'diagnosa',
+        'tindakan',
+        'resep'
     ];
 }

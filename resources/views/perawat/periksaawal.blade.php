@@ -27,27 +27,28 @@
                         <div class="card-body">
                             <div class="info-box mb-3">
                                 <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-                                @foreach ($datadasarpasien as $itemdata)
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Nama : {{ $itemdata->nama }}</span>
-                                        <span class="info-box-text">No.Rekam Medis
-                                            : {{ $itemdata->nomor_rekam_medis }}</span>
-                                        <span class="info-box-text">Tanggal Lahir
-                                            : {{ $itemdata->tanggal }}</span>
-                                        <span class="info-box-text">Jenis Kelamin
-                                            : {{ $itemdata->gender }}</span>
-                                    </div>
-                                @endforeach
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Nama : {{ $datadasarpasien->nama }}</span>
+                                    <span class="info-box-text">No.Rekam Medis
+                                        : {{ $datadasarpasien->nomor_rekam_medis }}</span>
+                                    <span class="info-box-text">Tanggal Lahir
+                                        : {{ $datadasarpasien->tanggal }}</span>
+                                    <span class="info-box-text">Jenis Kelamin
+                                        : {{ $datadasarpasien->gender }}</span>
+                                </div>
                             </div>
-                            <form action="/simpanpemeriksaanperawat" method="post">
+                            <form action="/simpanpemeriksaanperawat/{{ $id }}" method="post">
+                                @method ('PUT')
                                 @csrf
                                 <div class="form-group">
                                     <label>Anamanase</label>
-                                    <textarea name="anamnase"class="form-control" rows="3" placeholder="Anamnase"></textarea>
+                                    <input type='text' name="anamnase"class="form-control" rows="3"
+                                        placeholder="Anamnase"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Pemeriksaan Fisik</label>
-                                    <textarea name="pemeriksaan_fisik"class="form-control" rows="3" placeholder="tekanan darah dan lainya"></textarea>
+                                    <input type="text" name="pemeriksaan_fisik"class="form-control" rows="3"
+                                        placeholder="tekanan darah dan lainya"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
