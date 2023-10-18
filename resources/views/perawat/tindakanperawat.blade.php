@@ -49,18 +49,16 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
-                        <div class="form-check" class="listtindakan">
-                            <input type="checkbox" name="tindakan" class="tindakan" value="Jahit 5 jakitan"
-                                onclick="cektindakan()">
-                            <label for="vehicle1">Jahit 5 jakitan</label><br>
-                            <input type="checkbox" name="tindakan" class="tindakan" value="insisi" onclick="cektindakan()">
-                            <label for="vehicle1">Insisi</label><br>
-                            <input type="checkbox" name="tindakan" class="tindakan" value="bedah muka"
-                                onclick="cektindakan()">
-                            <label for="vehicle1">bedah muka</label><br>
-                            <input type="checkbox" name="tindakan" class="tindakan" value="bedah celana"
-                                onclick="cektindakan()">
-                            <label for="vehicle1">bedah celana</label><br>
+                        <div class="form-check">
+                            <div class="listtindakan">
+                                @foreach ($listtindakan as $itemtindakan)
+                                    <div class="btn btn-warning" style="margin:1%;">
+                                        <input type="checkbox" name="tindakan" class="tindakan"
+                                            value="{{ $itemtindakan->nama_tindakan }}" onclick="cektindakan()">
+                                        <label for="vehicle1">{{ $itemtindakan->nama_tindakan }}</label><br>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

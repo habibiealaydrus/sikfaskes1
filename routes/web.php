@@ -69,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/simpanpemeriksaanperawat/{id}', [perawatController::class, 'updatepemeriksaanfisik']);
     Route::get('/perawattindakan/{id}', [perawatController::class, 'tindakanperawat']);
     Route::put('/simpantindakan/{id}', [perawatController::class, 'simpantindakan']);
+    Route::get('/laporanperawat', [perawatController::class, 'laporanperawat']);
     //perawat
 
     //perawat end

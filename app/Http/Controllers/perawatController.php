@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Patient_data;
 use Illuminate\Http\Request;
 use App\Models\Medicalrecord;
+use App\Models\Medicaltreatment;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
@@ -77,14 +78,15 @@ class perawatController extends Controller
         //dd($medrec);
         //datadasarpasien
         $datadasarpasien = DB::table('patient_datas')->where('nomor_rekam_medis', $nomor_rekam_medik)->first();
-
+        $listtindakan = Medicaltreatment::all();
         return view(
             'perawat/tindakanperawat',
             [
                 'user' => $user,
                 'role' => $role,
                 'datadasarpasien' =>  $datadasarpasien,
-                'id' => $id
+                'id' => $id,
+                'listtindakan' => $listtindakan
             ]
         );
     }
@@ -94,5 +96,19 @@ class perawatController extends Controller
         $data = Medicalrecord::findOrFail($id);
         $data->update($request->all());
         return redirect('/perawat');
+    }
+    public function laporanperawat()
+    {
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        return view(
+            'perawat/laporanperawat',
+            [
+                'user' => $user,
+                'role' => $role,
+
+            ]
+        );
     }
 }

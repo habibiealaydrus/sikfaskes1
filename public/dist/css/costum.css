@@ -7,7 +7,6 @@
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
-  
 }
 
 @-webkit-keyframes spin {
@@ -42,4 +41,8 @@
 #myDiv {
   
   text-align: center;
+}
+.listtindakan {
+  display: flex;
+  flex-wrap: wrap; 
 }
