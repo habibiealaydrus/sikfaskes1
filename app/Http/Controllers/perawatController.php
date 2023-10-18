@@ -60,9 +60,39 @@ class perawatController extends Controller
     }
     public function updatepemeriksaanfisik(Request $request, $id)
     {
+
+
         $data = Medicalrecord::findOrFail($id);
         $data->update($request->all());
         //dd($data);
+        return redirect('/perawat');
+    }
+    public function tindakanperawat($id)
+    {
+        $user = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
+        $medrec = DB::table('medicalrecords')->where('id', $id)->first();
+        $nomor_rekam_medik = $medrec->nomor_rekam_medik;
+        //dd($medrec);
+        //datadasarpasien
+        $datadasarpasien = DB::table('patient_datas')->where('nomor_rekam_medis', $nomor_rekam_medik)->first();
+
+        return view(
+            'perawat/tindakanperawat',
+            [
+                'user' => $user,
+                'role' => $role,
+                'datadasarpasien' =>  $datadasarpasien,
+                'id' => $id
+            ]
+        );
+    }
+    public function simpantindakan(Request $request, $id)
+    {
+        //dd($request->tindakan);
+        $data = Medicalrecord::findOrFail($id);
+        $data->update($request->all());
         return redirect('/perawat');
     }
 }

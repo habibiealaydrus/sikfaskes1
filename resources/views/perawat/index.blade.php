@@ -105,8 +105,13 @@
                                             </td>
                                             <td>
                                                 <div class="flex-container">
-                                                    <span class="badge bg-danger" style="margin-right: 5%;">Periksa</span>
-                                                    <span class="badge bg-warning">Belum Periksa</span>
+                                                    @if ($antripoliantindakan->tindakan)
+                                                        <span class="badge bg-success">Telah Diperiksa</span>
+                                                    @else
+                                                        <a href="/perawattindakan/{{ $antripoliantindakan->id }}"
+                                                            class="badge bg-danger" style="margin-right:2%;">Periksa</a>
+                                                        <span class="badge bg-warning">Belum Periksa</span>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
