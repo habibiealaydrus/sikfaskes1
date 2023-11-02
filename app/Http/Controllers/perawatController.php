@@ -102,11 +102,18 @@ class perawatController extends Controller
         $user = Auth::user()->name;
         $role = Auth::user()->role_id;
 
+        $totalkunjungan = Medicalrecord::select('poli_kunjungan', DB::raw("COUNT(id) as count"))
+            ->where('poli_kunjungan', 'like', '%' . 'Poli tindakan' . '%')
+            ->orwhere('poli_kunjungan', 'like', '%' . 'Poli Dokter Umum' . '%')
+            ->groupBy('poli_kunjungan')
+            ->get();
+
         return view(
             'perawat/laporanperawat',
             [
                 'user' => $user,
                 'role' => $role,
+                'totalkunjungan' => $totalkunjungan
 
             ]
         );

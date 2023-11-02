@@ -7,6 +7,7 @@ use App\Http\Controllers\berandaController;
 use App\Http\Controllers\administratorController;
 use App\Http\Controllers\pendaftaranController;
 use App\Http\Controllers\perawatController;
+use App\Http\Controllers\dokterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,13 +65,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambahpasienpenunjang', [pendaftaranController::class, 'simpanpasienpenunjang']);
     Route::get('/kasir', [pendaftaranController::class, 'kasir']);
     //pendafataran end
+    //perawat
     Route::get('/perawat', [perawatController::class, 'index']);
     Route::get('/perawatperiksa/{id}', [perawatController::class, 'periksaawal']);
     Route::put('/simpanpemeriksaanperawat/{id}', [perawatController::class, 'updatepemeriksaanfisik']);
     Route::get('/perawattindakan/{id}', [perawatController::class, 'tindakanperawat']);
     Route::put('/simpantindakan/{id}', [perawatController::class, 'simpantindakan']);
     Route::get('/laporanperawat', [perawatController::class, 'laporanperawat']);
-    //perawat
-
     //perawat end
+    //dokter
+    Route::get('/dokter', [dokterController::class, 'index']);
+    Route::get('/pemeriksaandokter/{id}', [dokterController::class, 'pemeriksaandokter']);
+    //end dokter
 });
