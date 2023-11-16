@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Icdx;
 use Illuminate\Http\Request;
 use App\Models\Medicalrecord;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 
 class dokterController extends Controller
@@ -45,6 +47,7 @@ class dokterController extends Controller
         //datadasarpasien
         $datadasarpasien = DB::table('patient_datas')->where('nomor_rekam_medis', $nomor_rekam_medik)->first();
         $riwayatpasien = Medicalrecord::where('nomor_rekam_medik', $nomor_rekam_medik)->get();
+        $icdx = Icdx::all();
         //dd($datadasarpasien);
         //dd($id);
         return view(
@@ -54,7 +57,8 @@ class dokterController extends Controller
                 'role' => $role,
                 'datadasarpasien' => $datadasarpasien,
                 'id' => $id,
-                'medrec' => $riwayatpasien
+                'medrec' => $riwayatpasien,
+                'icdx' => $icdx
             ]
         );
     }

@@ -51,12 +51,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Diagnosa</label>
-                                    <input type="text" name="diagnosa"class="form-control" rows="3"
-                                        placeholder="ICD X">
+                                    <link rel="stylesheet"
+                                        href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css">
+                                    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                                        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
+                                    <select name="diagnosa" id="diagnosa" class="form-control">
+                                        @foreach ($icdx as $diagnosa)
+                                            <option value="{{ $diagnosa->code_icd_x }}">{{ $diagnosa->diagnosa }} -
+                                                {{ $diagnosa->code_icd_x }} </option>
+                                        @endforeach
+                                    </select>
+                                    <div id="search_list"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Tindakan</label>
-                                    <input type="text" name="tindakan"class="form-control" rows="3"
+                                    <input type="text" name="tindakan" class="form-control" rows="3"
                                         placeholder="Apabila ada tindakan">
                                 </div>
                                 <div class="form-group">
@@ -94,14 +105,25 @@
                         <div class="card-body">
                             <div class="info-box mb-3">
                                 <div class="info-box-content">
-                                    @foreach ($medrec as $riwayat)
-                                        <ul>
-                                            <li>Tanggal berobat : {{ $riwayat->created_at->format('d/m/Y') }}</li>
-                                            <li>Poli : {{ $riwayat->poli_kunjungan }}</li>
-                                            <li>Diagnosa : {{ $riwayat->diagnosa }}</li>
-                                            <li>Resep : {{ $riwayat->resep }}</li>
-                                        </ul>
-                                    @endforeach
+                                    <div class="flex-container-diagnosagit">
+                                        @foreach ($medrec as $riwayat)
+                                            <div class="col-sm-3">
+                                                <div class="card card-info">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Tanggal berobat :
+                                                            {{ $riwayat->created_at->format('d/m/Y') }}</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <ul>
+                                                            <li>Poli : {{ $riwayat->poli_kunjungan }}</li>
+                                                            <li>Diagnosa : {{ $riwayat->diagnosa }}</li>
+                                                            <li>Resep : {{ $riwayat->resep }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -112,4 +134,7 @@
             </div>
         </section>
     </div>
+    <script>
+        jQuery('#diagnosa').chosen();
+    </script>
 @endsection
